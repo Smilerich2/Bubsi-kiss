@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubsi-Kiss</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF69B4">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <style>
+        body {
+            font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', 'Comic Sans MS', sans-serif;
+            background-color: #FFE6F2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background-color: #FFC0CB;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            z-index: 1;
+        }
+        h1 {
+            color: #FF69B4;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background-color: #FF1493;
+            transform: scale(1.1);
+        }
+        #kissResult {
+            font-size: 48px;
+            margin-top: 20px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>&#x1F498; Bubsi-Kiss &#x1F498;</h1>
+        <button id="kissButton">Bubsi needs a kiss</button>
+        <div id="kissResult"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const kissButton = document.getElementById('kissButton');
+            const kissResult = document.getElementById('kissResult');
+            const kissSound = new Audio('kiss-sound.m4a');
+
+            kissButton.addEventListener('click', () => {
+                const kisses = ['\u{1F48B}', '\u{1F618}', '\u{1F61A}', '\u{1F619}', '\u{1F63D}'];
+                const randomKiss = kisses[Math.floor(Math.random() * kisses.length)];
+                kissResult.textContent = randomKiss;
+
+                kissSound.play().catch(error => console.error('Error playing sound:', error));
+
+                kissButton.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    kissButton.style.transform = 'scale(1)';
+                }, 100);
+
+                createConfetti();
+            });
+
+            function createConfetti() {
+                const confettiContainer = document.createElement('div');
+                confettiContainer.style.position = 'fixed';
+                confettiContainer.style.top = '0';
+                confettiContainer.style.left = '0';
+                confettiContainer.style.width = '100%';
+                confettiContainer.style.height = '100%';
+                confettiContainer.style.pointerEvents = 'none';
+                document.body.appendChild(confettiContainer);
+
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = '\u{2764}';
+                    confetti.style.position = 'absolute';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -20 + 'px';
+                    confetti.style.fontSize = Math.random() * 10 + 10 + 'px';
+                    confetti.style.transition = 'transform ' + (Math.random() * 2 + 3) + 's ease-out, opacity ' + (Math.random() * 2 + 3) + 's ease-out';
+                    confetti.style.opacity = '1';
+                    confettiContainer.appendChild(confetti);
+
+                    setTimeout(() => {
+                        const destinationX = (Math.random() - 0.5) * 200;
+                        const destinationY = window.innerHeight + 50;
+                        confetti.style.transform = `translate(${destinationX}px, ${destinationY}px) rotate(${Math.random() * 360}deg)`;
+                        confetti.style.opacity = '0';
+                    }, 50);
+
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+
+                setTimeout(() => {
+                    confettiContainer.remove();
+                }, 5000);
+            }
+        });
+
+        // Registriere den Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then((reg) => console.log('Service worker registered', reg))
+                .catch((err) => console.log('Service worker not registered', err));
+        }
+    </script>
+</body>
+</html>
