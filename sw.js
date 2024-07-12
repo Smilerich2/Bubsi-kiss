@@ -1,11 +1,11 @@
 const CACHE_NAME = 'bubsi-kiss-cache-v1';
 const assets = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192x192.png',
-  '/icon-512x512.png',
-  '/kiss-sound.m4a'
+  '/Bubsi-kiss/',
+  '/Bubsi-kiss/index.html',
+  '/Bubsi-kiss/manifest.json',
+  '/Bubsi-kiss/icon-192x192.png',
+  '/Bubsi-kiss/icon-512x512.png',
+  '/Bubsi-kiss/kiss-sound.m4a'
 ];
 
 self.addEventListener('install', (event) => {
