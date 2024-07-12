@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubsi-Kiss</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/Bubsi-kiss/manifest.json">
     <meta name="theme-color" content="#FF69B4">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Bubsi-Kiss">
-    <link rel="apple-touch-icon" href="icon-192x192.png">
+<link rel="apple-touch-icon" href="/Bubsi-kiss/icon-192x192.png">
+
+
     <style>
         body {
             font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', 'Comic Sans MS', sans-serif;
@@ -128,10 +130,10 @@
 
         // Registriere den Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then((reg) => console.log('Service worker registered', reg))
-                .catch((err) => console.log('Service worker not registered', err));
-        }
+    navigator.serviceWorker.register('/Bubsi-kiss/sw.js')
+        .then((reg) => console.log('Service worker registered', reg))
+        .catch((err) => console.log('Service worker not registered', err));
+}
     </script>
 </body>
 </html>
