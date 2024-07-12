@@ -2,7 +2,7 @@
   "name": "Bubsi-Kiss",
   "short_name": "Bubsi-Kiss",
   "description": "Eine süße App für Küsse",
-  "start_url": "/index.html",
+  "start_url": "/Bubsi-kiss/index.html",
   "display": "standalone",
   "background_color": "#FFE6F2",
   "theme_color": "#FF69B4",
